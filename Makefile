@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-CXX = 
-=======
 CXX = g++
->>>>>>> Stashed changes
 CXXFLAG = 
 LIBS = `sdl-config --libs` -lSDL_gfx -lSDL_image -lSDL_mixer -lSDL_ttf
 
