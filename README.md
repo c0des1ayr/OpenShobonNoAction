@@ -28,6 +28,7 @@ Controls (Keyboard)
 * O (while in-game): Self-destruction
 * Escape: Exit
 * F1: Return to title screen
+* F9 (while in-game): Care-less mode (not to be confused with careless mode)
 * 1-9 (while at the title screen): Select level
 * 0 at the title screen: Mystery Dungeon (there is a possibility that some bugs may occur)
 

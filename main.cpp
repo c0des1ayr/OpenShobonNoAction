@@ -2,6 +2,8 @@
 
 // プログラムは WinMain から始まります
 // Changed to ansi c++ main()
+int invuln = 0;
+int invbtncheck = 0;
 int main(int argc, char *argv[]) {
   parseArgs(argc, argv);
   if (DxLib_Init() == -1)
@@ -15,6 +17,18 @@ int main(int argc, char *argv[]) {
 
   // ループ
   while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0) {
+    if (CheckHitKey(SDLK_F9) == 1 && !invbtncheck) {
+      invuln ^= 1;
+      if (invuln) {
+        bgmchange(music[6]);
+      } else {
+        bgmreset();
+      }
+      invbtncheck = 1;
+    }
+    if (CheckHitKey(SDLK_F9) == 0 && invbtncheck) {
+      invbtncheck = 0;
+    }
     UpdateKeys();
     maint = 0;
     Mainprogram();
@@ -212,12 +226,12 @@ void rpaint() {
       if (mzimen == 1) {
         // 読みこんだグラフィックを拡大描画
         if (mact == 0)
-          drawimage(sprites[0][0], ma / 100, mb / 100);
+          drawimage(sprites[0][(invuln) ? 7 : 0], ma / 100, mb / 100);
         if (mact == 1)
-          drawimage(sprites[1][0], ma / 100, mb / 100);
+          drawimage(sprites[1][(invuln) ? 7 : 0], ma / 100, mb / 100);
       }
       if (mzimen == 0) {
-        drawimage(sprites[2][0], ma / 100, mb / 100);
+        drawimage(sprites[2][(invuln) ? 7 : 0], ma / 100, mb / 100);
       }
     }
     // 巨大化
@@ -226,7 +240,7 @@ void rpaint() {
     }
 
     else if (mtype == 200) {
-      drawimage(sprites[3][0], ma / 100, mb / 100);
+      drawimage(sprites[3][(invuln) ? 7 : 0], ma / 100, mb / 100);
     }
 
     mirror = 0;
@@ -1236,14 +1250,19 @@ void Mainprogram() {
 
     // HPがなくなったとき
     if (mhp <= 0 && mhp >= -9) {
-      mkeytm = 12;
-      mhp = -20;
-      mtype = 200;
-      mtm = 0;
-      Mix_HaltChannel(-1);
-      Mix_HaltMusic();
-      playsfx(sfx[12]);
-      StopSoundMem(sfx[16]);
+      if (!invuln || ((mb >= 52000) || (mb <= -6000))) {
+        mkeytm = 12;
+        mhp = -20;
+        mtype = 200;
+        mtm = 0;
+        Mix_HaltChannel(-1);
+        Mix_HaltMusic();
+        playsfx(sfx[12]);
+        invuln = 0;
+        StopSoundMem(sfx[16]);
+      } else {
+        mhp = 1;
+      }
     } // mhp
     if (mtype == 200) {
       if (mtm <= 11) {
@@ -7980,14 +7999,33 @@ void stagep() {
 // BGM変更
 void bgmchange(Mix_Music *x) {
   Mix_HaltMusic();
-  music[0] = x;
-  Mix_PlayMusic(music[0], -1);
-  if (x == music[2]) {
-    Mix_VolumeMusic(MIX_MAX_VOLUME * 40 / 100);
-  } else {
+  if (invuln && music[0] != music[6]) {
+    music[0] = music[6];
+    Mix_PlayMusic(music[0], -1);
     Mix_VolumeMusic(MIX_MAX_VOLUME * 50 / 100);
+  } else {
+    music[0] = x;
+    Mix_PlayMusic(music[0], -1);
+    if (x == music[2]) {
+      Mix_VolumeMusic(MIX_MAX_VOLUME * 40 / 100);
+    } else {
+      Mix_VolumeMusic(MIX_MAX_VOLUME * 50 / 100);  
+    }
   }
 } // bgmchange()
+
+void bgmreset()
+{
+  Mix_Music *selected_track = music[1];
+  if ((world == 1 && (level == 2 || level == 3) && sublevel == 1) || (world == 2 && level == 2 && sublevel == 1)) {
+    selected_track = music[2];
+  } else if (world == 1 && level == 3 && sublevel == 5) {
+    selected_track = music[3];
+  } else if ((world == 1 || world == 2) && level == 4 && (sublevel == 0 || (world == 2 && (sublevel == 1 || sublevel == 10 || sublevel == 12)))) {
+    selected_track = music[4];
+  }
+  bgmchange(selected_track);
+} // bgmreset()
 
 // ブロック出現
 

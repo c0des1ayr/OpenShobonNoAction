@@ -81,10 +81,11 @@ void drawimage(SDL_Surface * mx, int a, int b, int c, int d, int e, int f);
 void setre();
 void setre2();
 void setno();
-Mix_Music *music[6];
+Mix_Music *music[7];
 Mix_Chunk *sfx[19];
 void playsfx(Mix_Chunk * x);
 void bgmchange(Mix_Music * x);
+void bgmreset();
 
 //文字
 void str(string c, int a, int b);

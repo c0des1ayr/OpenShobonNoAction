@@ -4,7 +4,7 @@ extern int ma, t, tt;
 extern SDL_Surface *sprites[161][8];
 extern SDL_Surface *graphics[51];
 int x1;
-extern Mix_Music *music[6];
+extern Mix_Music *music[7];
 extern Mix_Chunk *sfx[19];
 
 extern int anx[160], any[160];
@@ -24,6 +24,7 @@ void loadg(void) {
 
   // プレイヤー
   graphics[0] = LoadGraph("res/player.PNG");
+  graphics[31] = LoadGraph("res/player-invuln.PNG");
   // ブロック
   graphics[1] = LoadGraph("res/brock.PNG");
   // アイテム
@@ -48,6 +49,12 @@ void loadg(void) {
   sprites[2][0] = DerivationGraph(31 * 2, 0, 30, 36, graphics[0]);
   sprites[3][0] = DerivationGraph(31 * 3, 0, 30, 36, graphics[0]);
   sprites[41][0] = DerivationGraph(50, 0, 51, 73, graphics[6]);
+  // the invulnerability area
+  sprites[40][7] = DerivationGraph(0, 0, 30, 36, graphics[31]);
+  sprites[0][7] = DerivationGraph(31 * 4, 0, 30, 36, graphics[31]);
+  sprites[1][7] = DerivationGraph(31 * 1, 0, 30, 36, graphics[31]);
+  sprites[2][7] = DerivationGraph(31 * 2, 0, 30, 36, graphics[31]);
+  sprites[3][7] = DerivationGraph(31 * 3, 0, 30, 36, graphics[31]);
 
   x1 = 1;
   // ブロック読み込み
@@ -175,6 +182,7 @@ void loadg(void) {
   music[3] = LoadMusicMem("BGM/star4.ogg");   // 50
   music[4] = LoadMusicMem("BGM/castle.ogg");  // 50
   music[5] = LoadMusicMem("BGM/puyo.ogg");    // 50
+  music[6] = LoadMusicMem("BGM/invuln.ogg");  // 50
 
   sfx[1] = LoadSoundMem("SE/jump.ogg");
   sfx[3] = LoadSoundMem("SE/brockbreak.ogg");
