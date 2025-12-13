@@ -12,29 +12,17 @@ extern int ne[40], nf[40];
 
 void loadg(void)
 {
-
     for (t = 0; t < 51; t++) {
-	mgrap[t] = 0;
+        mgrap[t] = 0;
     }
-    for (int i = 0; i < 161; i++)
-	for (int j = 0; j < 8; j++)
-	    grap[i][j] = NULL;
-
-/*
-for (t=0;t<161;t++){
-for (tt=0;tt<8;tt++){
-grap[t][tt]=0;
-}}
-*/
-
-//ma-=100;//mb==5000;
-//end();
+    for (int i = 0; i < 161; i++) {
+	   for (int j = 0; j < 8; j++) {
+            grap[i][j] = NULL;
+       }
+    }
 
 
 //画像読み込み
-
-// 透過色を変更
-//SetTransColor( 9*16+9 , 255 , 255 ) ;
 
 //プレイヤー
     mgrap[0] = LoadGraph("res/player.PNG");
@@ -169,16 +157,15 @@ grap[t][tt]=0;
 //int GrHandle=0;
     x1 = 3;
     for (t = 0; t <= 140; t++) {
-	if (grap[t][x1]) {
-	    anx[t] = grap[t][x1]->w;
-	    any[t] = grap[t][x1]->h;
-//GetGraphSize(grap[t][x1] ,&anx[t] ,&any[t]);
-	    anx[t] *= 100;
-	    any[t] *= 100;
-	} else {
-	    anx[t] = 0;
-	    any[t] = 0;
-	}
+    	if (grap[t][x1]) {
+    	    anx[t] = grap[t][x1]->w;
+    	    any[t] = grap[t][x1]->h;
+    	    anx[t] *= 100;
+    	    any[t] *= 100;
+    	} else {
+    	    anx[t] = 0;
+    	    any[t] = 0;
+    	}
     }
     anx[79] = 120 * 100;
     any[79] = 15 * 100;
@@ -188,23 +175,14 @@ grap[t][tt]=0;
 //背景サイズ収得
     x1 = 4;
     for (t = 0; t < 40; t++) {
-	if (grap[t][x1]) {
-	    ne[t] = grap[t][x1]->w;
-	    nf[t] = grap[t][x1]->h;
-//GetGraphSize(grap[t][x1] ,&ne[t] ,&nf[t]);
-//ne[t]*=100;nf[t]*=100;
-	} else {
-	    ne[t] = 0;
-	    nf[t] = 0;
-	}
+    	if (grap[t][x1]) {
+    	    ne[t] = grap[t][x1]->w;
+    	    nf[t] = grap[t][x1]->h;
+    	} else {
+    	    ne[t] = 0;
+    	    nf[t] = 0;
+    	}
     }
-
-/*
-anx[0]=30;any[0]=30;
-anx[1]=30;any[1]=43;
-anx[2]=30;any[2]=30;
-anx[3]=30;any[3]=44;
-*/
 
 
 
@@ -215,18 +193,13 @@ anx[3]=30;any[3]=44;
 
 
 //ogg読み込み
-//try{
-//oto[2] = LoadSoundMem( "SE/1.mp3" ) ;
     otom[1] = LoadMusicMem("BGM/field.ogg"); //50
     otom[2] = LoadMusicMem("BGM/dungeon.ogg"); //40
     otom[3] = LoadMusicMem("BGM/star4.ogg"); //50
     otom[4] = LoadMusicMem("BGM/castle.ogg"); //50
     otom[5] = LoadMusicMem("BGM/puyo.ogg"); //50
-//otom[6]=LoadMusicMem( "BGM/last.ogg");
-//ChangeVolumeSoundMem(50, otom[6]);
 
     oto[1] = LoadSoundMem("SE/jump.ogg");
-//oto[2] = LoadSoundMem("SE/brockcoin.ogg");
     oto[3] = LoadSoundMem("SE/brockbreak.ogg");
     oto[4] = LoadSoundMem("SE/coin.ogg");
     oto[5] = LoadSoundMem("SE/humi.ogg");
@@ -243,23 +216,17 @@ anx[3]=30;any[3]=44;
     oto[16] = LoadSoundMem("SE/4-clear.ogg");
     oto[17] = LoadSoundMem("SE/allclear.ogg");
     oto[18] = LoadSoundMem("SE/tekifire.ogg");
-
-//}catch( int num){end();}
-
-
-//ループ設定-20000-20秒
-//SetLoopPosSoundMem( 1,oto[104]) ;
-//SetLoopSamplePosSoundMem(44100,oto[104]);
-//SetLoopSamplePosSoundMem(22050,oto[104]);
-
 }
 
 extern bool sound;
 void parseArgs(int argc, char* argv[])
 {
-    if(argc <= 1) return;
-    for(int i = 0; i < argc; i++)
-    {
-        if(!strcasecmp(argv[i], "-nosound")) sound = false;
+    if (argc <= 1) {
+        return;
+    }
+    for (int i = 0; i < argc; i++) {
+        if (!strcasecmp(argv[i], "-nosound")) {
+            sound = false;
+        }
     }
 }
