@@ -19,7 +19,7 @@ int mainZ = 100, maintm = 0;
 
 //ステージ
 int stagecolor = 1;
-int sta = 1, stb = 4, stc = 0;
+int world = 1, level = 4, sublevel = 0;
 
 //クイック
 int fast = 1;
@@ -71,8 +71,8 @@ void fillrect(int a, int b, int c, int d);
 void drawarc(int a, int b, int c, int d);
 void fillarc(int a, int b, int c, int d);
 void FillScreen();
-SDL_Surface *grap[161][8];
-SDL_Surface *mgrap[51];
+SDL_Surface *sprites[161][8];
+SDL_Surface *graphics[51];
 SDL_Surface *loadimage(string b);
 SDL_Surface *loadimage(int a, int x, int y, int r, int z);
 int mirror;
@@ -81,9 +81,9 @@ void drawimage(SDL_Surface * mx, int a, int b, int c, int d, int e, int f);
 void setre();
 void setre2();
 void setno();
-Mix_Music *otom[6];
-Mix_Chunk *oto[19];
-void ot(Mix_Chunk * x);
+Mix_Music *music[6];
+Mix_Chunk *sfx[19];
+void playsfx(Mix_Chunk * x);
 void bgmchange(Mix_Music * x);
 
 //文字
