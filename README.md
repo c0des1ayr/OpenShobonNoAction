@@ -1,13 +1,14 @@
-Open Syobon Action
+Open Shobon no Action
 ==================
 ###### Original game developer: Chiku (ちく)
 ###### Open-source port developer: Mathew Velasquez
-###### Developer/maintainer of this fork: Karen／明美 (@angelXwind)
+###### Developer/maintainer of the original fork: Karen／明美 (@akemin-dayo)
+###### Developer/maintainer of this fork: c0des1ayr
 #### [English] [[日本語]](README_ja.md)
 
-Open Syobon Action (オープンしょぼんのアクション) is an open-source cross-platform port of the unforgiving Japanese platformer using SDL.
+Open Shobon no Action (オープンしょぼんのアクション) is an open-source cross-platform port of the unforgiving Japanese platformer using SDL.
 
-It is also called "Shobon no Action," "Neko Mario," "Cat Mario," or "Cat MeOUCHio."
+It is also called "Syobon Action", "Neko Mario", "Cat Mario", and "Cat MeOUCHio".
 
 Notes
 -----
@@ -24,15 +25,11 @@ Controls (Keyboard)
 * Left/Right: Move
 * Z or Up: Jump
 * Space: Double-speed
-* 0 (while in-game): Self-destruction
+* O (while in-game): Self-destruction
 * Escape: Exit
 * F1: Return to title screen
 * 1-9 (while at the title screen): Select level
 * 0 at the title screen: Mystery Dungeon (there is a possibility that some bugs may occur)
-
-Bugs
-----
-Please report any bugs at the GitHub issue tracker: https://github.com/angelXwind/OpenSyobonAction/issues
 
 Command Line Arguments
 ----------------------
@@ -48,15 +45,14 @@ Dependencies
 
 Gamepad Notes
 -------------
-Your gamepad or joystick may not work by default with Open Syobon Action. Check joyconfig.h for more information.
-
-Unimplemented
--------------
-* Font thickness (Not really important)
-* Port to other operating systems (OS X, iOS, Android, etc.)
+Your gamepad or joystick may not work by default with Open Shobon no Action. Check joyconfig.h for more information.
 
 Release Changelog
 -----------------
+**Open Shobon no Action 1.0.0**
+* First release under the new name
+* Make iterating code changes easier by ignoring both object files and the executable
+
 **Open Syobon Action RC 3**
 * Fixed audio on Windows 7 and above
 
