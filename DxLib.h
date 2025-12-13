@@ -1,5 +1,5 @@
 //This file is a reverse engineered "DxLib.h" to the extent that
-//Syobon Action uses it. Minor functions are just replaced with SDL
+//Shobon no Action uses it. Minor functions are just replaced with SDL
 //counterparts.
 #include <SDL/SDL.h>
 #include <SDL/SDL_rotozoom.h>
@@ -14,8 +14,6 @@
 
 #include "joyconfig.h"
 
-#define TRUE 1
-#define FALSE 0
 #define byte unsigned char
 
 #define ScreenFlip() SDL_Flip(screen)
@@ -82,15 +80,12 @@ byte WaitKey();
 
 #define GetColor(r, g, b) SDL_MapRGB(screen->format, r, g, b)
 
-//Uint32 GetColor(byte r, byte g, byte b);
-
 #define DrawGraph(a, b, mx, z) DrawGraphZ(a, b, mx)
 void DrawGraphZ(int a, int b, SDL_Surface * mx);
 
 #define DrawTurnGraph(a, b, mx, z) DrawTurnGraphZ(a, b, mx)
 void DrawTurnGraphZ(int a, int b, SDL_Surface * mx);
 
-//#define DrawVertTurnGraph(x, y, e, a, mx, z) DrawRotaGraphZ(x, y, a, mx)
 void DrawVertTurnGraph(int a, int b, SDL_Surface * mx);
 
 SDL_Surface *DerivationGraph(int srcx, int srcy, int width, int height,
