@@ -1,4 +1,5 @@
 #include "main.h"
+#include <SDL/SDL_mixer.h>
 
 // プログラムは WinMain から始まります
 // Changed to ansi c++ main()
@@ -17,12 +18,14 @@ int main(int argc, char *argv[]) {
 
   // ループ
   while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0) {
-    if (CheckHitKey(SDLK_F9) == 1 && !invbtncheck) {
+    if (CheckHitKey(SDLK_F9) == 1 && !invbtncheck && mainZ == 1 && mtype != 200) {
       invuln ^= 1;
-      if (invuln) {
-        bgmchange(music[6]);
-      } else {
-        bgmreset();
+      if (mtype < 300 || mtype > 302) {
+        if (invuln) {
+          bgmchange(music[6]);
+        } else {
+          bgmreset();
+        }
       }
       invbtncheck = 1;
     }
@@ -30,10 +33,7 @@ int main(int argc, char *argv[]) {
       invbtncheck = 0;
     }
     UpdateKeys();
-    maint = 0;
     Mainprogram();
-    if (maint == 3)
-      break;
   }
 
   // ＤＸライブラリ使用の終了処理
@@ -983,7 +983,6 @@ void rpaint() {
     FillScreen();
 
     SetFontSize(16);
-    SetFontThickness(4);
 
     drawimage(sprites[0][0], 190, 190);
     DrawFormatString(230, 200, GetColor(255, 255, 255), " × %d", nokori);
